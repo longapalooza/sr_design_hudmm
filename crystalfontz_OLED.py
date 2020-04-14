@@ -1,4 +1,4 @@
-import time
+from time import sleep
 import spidev
 import RPi.GPIO as GPIO
 
@@ -11,76 +11,66 @@ HRES = 128
 VRES = 56
 Brightness = 0xBF
 
-# needs porting
 # PORTB are pins 8-13   
 def CLR_CS():
     # PORTB &= ~(0x01)
     # PORTB = PORTB & ~(0x01)
     # PORTB = PORTB and not 0x01
-    GPIO.output(8,GPIO.LOW)
+    GPIO.output(12,GPIO.LOW)
     pass
 
-# needs porting
 def SET_CS():
     # PORTB |=  (0x01)
     # PORTB = PORTB | 0x01
     # PORTB = PORTB or 0x01
-    GPIO.output(8,GPIO.HIGH)
+    GPIO.output(12,GPIO.HIGH)
     pass
 
-# needs porting
 def CLR_RESET():
     # (PORTB &= ~(0x02))
-    GPIO.output(9,GPIO.LOW)
+    GPIO.output(16,GPIO.LOW)
     pass
 
-# needs porting
 def SET_RESET():
     # (PORTB |=  (0x02))
-    GPIO.output(9,GPIO.HIGH)
+    GPIO.output(16,GPIO.HIGH)
     pass
 
-# needs porting
 # PORTC are pins A0-A5
 def CLR_DC():
     # (PORTC &= ~(0x01))
     #change pin
-    GPIO.output(A0,GPIO.LOW)
+    GPIO.output(0,GPIO.LOW)
     pass
 
-# needs porting
 def SET_DC():
     # (PORTC |=  (0x01))
     #change pin
-    GPIO.output(A0,GPIO.HIGH)
+    GPIO.output(0,GPIO.HIGH)
     pass
 
-# needs porting
 def CLR_WR():
     # (PORTC &= ~(0x02))
     #change pin
-    GPIO.output(A1,GPIO.LOW)
+    GPIO.output(5,GPIO.LOW)
     pass
 
-# needs porting
 def SET_WR():
     # (PORTC |=  (0x02))
     #change pin
-    GPIO.output(A1, GPIO.HIGH)
+    GPIO.output(5, GPIO.HIGH)
     pass
 
-# needs porting
 def CLR_RD():
     # (PORTC &= ~(0x04))
     #change pin
-    GPIO.output(A2, GPIO.LOW)
+    GPIO.output(6, GPIO.LOW)
     pass
 
-# needs porting
 def SET_RD():
     # (PORTC |=  (0x04))
     #change pin
-    GPIO.output(A2, GPIO.HIGH)
+    GPIO.output(6, GPIO.HIGH)
     pass
 
 def WRITE_RAM():
@@ -105,7 +95,7 @@ def writeData(data):
   spi.xfer2(data)
   # Deselect the LCD controller
   SET_CS()
-}
+
 
 def Set_Start_Column(d):
     writeCommand([0x00 + d % 16])
@@ -138,47 +128,42 @@ def OLED_Init():
     Fill_RAM(0x00)
     writeCommand([0XAF])
 
-# needs porting
 DDRD = 0xff # Sets pins 0-7 as output
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
+GPIO.setup(14,GPIO.OUT)
+GPIO.setup(15,GPIO.OUT)
+GPIO.setup(18,GPIO.OUT)
+GPIO.setup(23,GPIO.OUT)
+GPIO.setup(24,GPIO.OUT)
+GPIO.setup(25,GPIO.OUT)
+GPIO.setup(8,GPIO.OUT)
+GPIO.setup(7,GPIO.OUT)
 
-# needs porting
 DDRC = 0xff # Sets pins A0-A5 as output
 
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
+GPIO.setup(0,GPIO.OUT)
+GPIO.setup(5,GPIO.OUT)
+GPIO.setup(6,GPIO.OUT)
+GPIO.setup(13,GPIO.OUT)
+GPIO.setup(19,GPIO.OUT)
+GPIO.setup(26,GPIO.OUT)
 
-# needs porting
 DDRB = 0x03 # Sets pins 8 and 9 to outputs and 10-13 as inputs
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.OUT)
-GPIO.setup(__,GPIO.IN)
-GPIO.setup(__,GPIO.IN)
+GPIO.setup(12,GPIO.OUT)
+GPIO.setup(16,GPIO.OUT)
+GPIO.setup(20,GPIO.IN)
+GPIO.setup(27,GPIO.IN)
+GPIO.setup(17,GPIO.IN)
+GPIO.setup(22,GPIO.IN)
 
-# needs porting
 PORTD = 0xff # Sets pins 0-7 as high
-GPIO.output(__,GPIO.HIGH)
-GPIO.output(__,GPIO.HIGH)
-GPIO.output(__,GPIO.HIGH)
-GPIO.output(__,GPIO.HIGH)
-GPIO.output(__,GPIO.HIGH)
-GPIO.output(__,GPIO.HIGH)
-GPIO.output(__,GPIO.HIGH)
-GPIO.output(__,GPIO.HIGH)
-GPIO.output(__,GPIO.HIGH)
+GPIO.output(14,GPIO.HIGH)
+GPIO.output(15,GPIO.HIGH)
+GPIO.output(18,GPIO.HIGH)
+GPIO.output(23,GPIO.HIGH)
+GPIO.output(24,GPIO.HIGH)
+GPIO.output(25,GPIO.HIGH)
+GPIO.output(8,GPIO.HIGH)
+GPIO.output(7,GPIO.HIGH)
 
 SET_RD()
 SET_WR()

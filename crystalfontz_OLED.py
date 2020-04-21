@@ -128,6 +128,7 @@ def OLED_Init():
     Fill_RAM(0x00)
     writeCommand([0XAF])
 
+print('here 1')
 DDRD = 0xff # Sets pins 0-7 as output
 GPIO.setup(14,GPIO.OUT)
 GPIO.setup(15,GPIO.OUT)
@@ -137,16 +138,16 @@ GPIO.setup(24,GPIO.OUT)
 GPIO.setup(25,GPIO.OUT)
 GPIO.setup(8,GPIO.OUT)
 GPIO.setup(7,GPIO.OUT)
-
+print('here 2')
 DDRC = 0xff # Sets pins A0-A5 as output
-
+print('here 3')
 GPIO.setup(0,GPIO.OUT)
 GPIO.setup(5,GPIO.OUT)
 GPIO.setup(6,GPIO.OUT)
 GPIO.setup(13,GPIO.OUT)
 GPIO.setup(19,GPIO.OUT)
 GPIO.setup(26,GPIO.OUT)
-
+print('here 4')
 DDRB = 0x03 # Sets pins 8 and 9 to outputs and 10-13 as inputs
 GPIO.setup(12,GPIO.OUT)
 GPIO.setup(16,GPIO.OUT)
@@ -154,7 +155,7 @@ GPIO.setup(20,GPIO.IN)
 GPIO.setup(27,GPIO.IN)
 GPIO.setup(17,GPIO.IN)
 GPIO.setup(22,GPIO.IN)
-
+print('here 5')
 PORTD = 0xff # Sets pins 0-7 as high
 GPIO.output(14,GPIO.HIGH)
 GPIO.output(15,GPIO.HIGH)
@@ -164,18 +165,18 @@ GPIO.output(24,GPIO.HIGH)
 GPIO.output(25,GPIO.HIGH)
 GPIO.output(8,GPIO.HIGH)
 GPIO.output(7,GPIO.HIGH)
-
+print('here 6')
 SET_RD()
 SET_WR()
 SET_CS()
-
+print('here 7')
 spi = spidev.SpiDev()
 spi.open(0, 1) # bus = 0, device = 1; may need to change device to CS pin - Will Long
 spi.max_speed_hz = 8000000
 spi.lsbfirst = False # not sure about this one - Will Long
 spi.mode = 0b00
 OLED_Init()
-
+print('here 8')
 while True:
     print('top of loop')
     Fill_RAM(0x00)

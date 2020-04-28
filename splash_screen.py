@@ -22,7 +22,6 @@ def Test():
         for x in range(0, 128):
             writeData(0x00)
 
-
-# Also Mono_1BPP() is Have is
-#def Mono_1BPP():
-#     Screen = {Hex}
+# Not sure what you are trying to do here - Will
+def Mono_1BPP():
+    Screen = {Hex}
